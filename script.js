@@ -1,10 +1,24 @@
-let display = document.getElementById('calculator');
-let buttons = document.getElementById('button');
+
 let result = document.getElementById('display');
 
-buttons.forEach(function(btn) {
-    btn.addEventListener('click', function(e){
-        const text = e.currentTarget.textContent;
-           result.textContent = text;
-    })
-})
+function appendToDisplay(value){
+    if( result.value === "0"){
+        result.value = value;
+    }else{
+        result.value += value;
+    }
+}
+function clearDisplay(){
+    result.value = "";
+}
+function deleteLast(){
+    result.value = result.value.slice(0, -1);
+}
+function  calculate(){
+    try{
+        result.value = eval(result.value);
+    }
+    catch{
+        result.value = "Error";
+    }
+}
