@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background:linear-gradient(135deg, #667eea 0% , #764ba2 100%);
+            transition: all 0.5s ease;
+        }
+        .container{
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            min-width: 400px;
+        }
+        h1{
+            color: white;
+            margin-bottom: 30px;
+            font-size:2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+        }
+        .color-display{
+            width: 200px;
+            height: 200px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0,0.4);
+            transition: all 0.3s ease;
+            border: 5px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+           font-size: 1.2rem;
+           color: #333;
+        }
+        .button-grid{
+            display: grid;
+            grid-template-columns: repeat(3 , 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .color-btn{
+            display: block;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-decoration:none;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);      
+          }
+          .color-btn:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+          }
+          .red-btn{
+            background: linear-gradient(135deg, #ff416c , #ff4757);
+          }
+        .blue-btn{
+            background: linear-gradient(135deg, #4834d4 , #686de0);
+        }
+        .green-btn{
+            background: linear-gradient(135deg, #00d2d3 , #54a0ff);
+        }
+        .yellow-btn{
+            background: linear-gradient(135deg, #feca57, #ff9ff3);
+        }
+        .purple-btn{
+            background: linear-gradient(135deg, #5505a5 , #03522a85);
+        }
+        .orange-btn{
+            background: linear-gradient(135deg, #dd8faa , #d18d06);
+        }
+      
+        .Reset-Btn{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .Reset-Btn:hover{
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        @media(max-width:480px){
+            .container{
+                min-width: 300px;
+                padding: 20px;
+            }
+            .button-grid{
+                grid-template-columns: repeat(2 , 1fr);
+            }
+            h1{
+                font-size: 2rem;
+            }
+        }
+
+    </style>
+    <div id="red"></div>
+    <div id="blue"></div>
+    <div id="green"></div>
+    <div id="yellow"></div>
+    <div id="purple"></div>
+    <div id="orange"></div>
+    <div class="container">
+        <h1>Color Changer App</h1>
+        <p style="color: rgba(255,255,255, 0.8);margin-bottom: 20px;">Click a color to transform the theme!</p>
+        <div class="color-display"> Choose a Color</div>
+        <div class="button-grid">
+            <a href="#red" class="color-btn red-btn"> Red </a>
+            <a href="#blue" class="color-btn blue-btn"> Blue</a>
+            <a href="#green" class="color-btn green-btn"> Green </a>
+            <a href="#yellow" class="color-btn yellow-btn"> Yellow </a>
+            <a href="#purple" class="color-btn purple-btn"> Purple </a>
+            <a href="#orange" class="color-btn orange-btn">Orange</a>
+        </div>
+        <a href="#" class="Reset-Btn">Reset</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
