@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Size Controller</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .controls {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        select {
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .text-editor {
+            padding: 30px;
+        }
+
+        .text-display {
+            min-height: 200px;
+            padding: 25px;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            background: #f8f9fa;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .text-display:focus {
+            outline: none;
+            border-color: #007bff;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .size-display {
+            background: #e9ecef;
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            color: #495057;
+            margin-left: 10px;
+        }
+
+        .current-font {
+            background: #d4edda;
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            color: #155724;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                padding: 20px;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    <div class="container">
+        <div class="header">
+            <h1>Font Size Controller</h1>
+            <p>Control Text Size, Font Family, And Edit Content Dynamically</p>
+        </div>
+
+        <div class="controls">
+            <!-- Font Size Controls -->
+            <div class="control-group">
+                <label>Font Size Controls
+                    <span class="size-display" id="sizeDisplay">16px</span>
+                </label>
+                <div class="btn-group">
+                    <button class="btn" id="decreaseBtn">- Decrease Size</button>
+                    <button class="btn" id="increaseBtn">+ Increase Size</button>
+                    <button class="btn btn-danger" id="resetSizeBtn">Reset Size</button>
+                </div>
+            </div>
+
+            <!-- Font Family Controls -->
+            <div class="control-group">
+                <label>Font Family
+                    <span class="current-font" id="currentFont">Arial</span>
+                </label>
+                <div class="btn-group">
+                    <select id="fontSelect">
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value="'Times New Roman', serif">Times New Roman</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="Verdana, sans-serif">Verdana</option>
+                        <option value="Helvetica, sans-serif">Helvetica</option>
+                        <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                        <option value="Impact, fantasy">Impact</option>
+                        <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                        <option value="'Palatino Linotype', serif">Palatino Linotype</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Text Style Controls -->
+            <div class="control-group">
+                <label>Text Style Options</label>
+                <div class="btn-group">
+                    <button class="btn" id="boldBtn">Bold</button>
+                    <button class="btn" id="italicBtn">Italic</button>
+                    <button class="btn" id="underlineBtn">Underline</button>
+                    <button class="btn btn-success" id="resetStyleBtn">Reset Styles</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-editor">
+            <div class="text-display" id="textDisplay" contenteditable="true" >
+                Welcome to the Font Size Controller! 
+                
+                here is it my day2 evening project .>>
+                dropdown family select >>
+                buttons for bold, italic, underline >>
+                buttons for increase, decrease, reset size >>   
+                Enjoy customizing your text!
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
