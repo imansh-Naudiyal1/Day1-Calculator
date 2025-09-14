@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Math Operations Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .theory-section, .practice-section {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #4facfe;
+        }
+        
+        .theory-section h2, .practice-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .function-type {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .function-type h3 {
+            color: #4facfe;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .calc-display {
+            background: #2d3748;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            text-align: right;
+            margin-bottom: 20px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .calc-btn {
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .calc-btn.number {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .calc-btn.operator {
+            background: #4facfe;
+            color: white;
+        }
+        
+        .calc-btn.equals {
+            background: #48bb78;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .calc-btn.clear {
+            background: #f56565;
+            color: white;
+        }
+        
+        .test-results {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .test-case {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        
+        .test-pass {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .test-fail {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Math Operations Library</h1>
+            <p>Day 3: Functions Deep Dive - Function Declarations, Expressions, and Arrow Functions</p>
+        </div>
+        
+        <div class="content">
+            <div class="theory-section">
+                <h2> Function Types</h2>
+                
+                <div class="function-type">
+                    <h3>1. Function Declaration</h3>
+                    <div class="code-block">
+function add(a, b) {
+    return a + b;
+}</div>
+                    <p><strong>Features:</strong> Hoisted, can be called before declaration</p>
+                </div>
+                
+                <div class="function-type">
+                    <h3>2. Function Expression</h3>
+                    <div class="code-block">
+const multiply = function(a, b) {
+    return a * b;
+};</div>
+                    <p><strong>Features:</strong> Not hoisted, assigned to variable</p>
+                </div>
+                
+                <div class="function-type">
+                    <h3>3. Arrow Function</h3>
+                    <div class="code-block">
+const divide = (a, b) => {
+    return b !== 0 ? a / b : 'Error';
+};</div>
+                    <p><strong>Features:</strong> Concise syntax, lexical this binding</p>
+                </div>
+            </div>
+            
+            <div class="practice-section">
+                <h2>🔧 Interactive Calculator</h2>
+                <div class="calculator">
+                    <div class="calc-display" id="display"></div>
+                    <div class="calc-buttons">
+                        <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+                        <button class="calc-btn operator" onclick="appendToDisplay('/')">/</button>
+                        <button class="calc-btn operator" onclick="appendToDisplay('*')">×</button>
+                        <button class="calc-btn operator" onclick="deleteLast()">←</button>
+                        
+                        <button class="calc-btn number" onclick="appendToDisplay('7')">7</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('8')">8</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('9')">9</button>
+                        <button class="calc-btn operator" onclick="appendToDisplay('-')">-</button>
+                        
+                        <button class="calc-btn number" onclick="appendToDisplay('4')">4</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('5')">5</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('6')">6</button>
+                        <button class="calc-btn operator" onclick="appendToDisplay('+')">+</button>
+                        
+                        <button class="calc-btn number" onclick="appendToDisplay('1')">1</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('2')">2</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('3')">3</button>
+                        <button class="calc-btn equals" onclick="calculate()" rowspan="2">=</button>
+                        
+                        <button class="calc-btn number" onclick="appendToDisplay('0')" style="grid-column: span 2;">0</button>
+                        <button class="calc-btn number" onclick="appendToDisplay('.')">.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-results">
+            <h2>Function Tests</h2>
+            <div id="test-container"></div>
+            <button onclick="runAllTests()" style="background: #4facfe; color: white; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; margin-top: 15px;">
+                Run All Tests
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
